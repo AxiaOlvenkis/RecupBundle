@@ -1,0 +1,42 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <p>Recuperation des données de l'ancien site</p>
+    <p id="info" style="color:red;"></p>
+    <p>
+        <button class="btn btn-info" id="livres">Recuperer les livres</button>
+        <button class="btn btn-info" id="mangas">Recuperer les manga</button>
+        <button class="btn btn-info" id="jeux">Recuperer les jeux de societe</button>
+    </p><p>
+        <button class="btn btn-info" id="films">Recuperer les films</button>
+        <button class="btn btn-info" id="series">Recuperer les series</button>
+        <button class="btn btn-info" id="animes">Recuperer les animés</button>
+    </p><p>
+        <button class="btn btn-info" id="comics">Recuperer les comics</button>
+        <button class="btn btn-info" id="bd">Recuperer les BD</button>
+    </p>
+    <div id="recuperation">
+        <button id="saveListe" disabled="disabled" class="btn btn-success">Sauvegarder la liste</button>
+        <table id="tableRecup" class="table table-bordered table-stripped table-responsive">
+        </table>
+    </div>
+    <script src="{{ asset('bundles/recup/recuperation.js') }}"></script>
+    <script>
+        function sauvegarde()
+        {
+            var DATA = "type=" + type_en_cours;
+
+            $.ajax({
+                type: "POST",
+                url: "{{ path('admin_api_recup_trait')}}",
+                data: DATA,
+                cache: false,
+                success: function(data){
+                    console.log(data);
+                    $("#info").append("<b>L'ajout a été un succés</b>");
+                }
+            });
+            return false;
+        }
+    </script>
+{% endblock %}

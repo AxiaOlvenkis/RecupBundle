@@ -1,0 +1,11 @@
+recup_homepage:
+    path:     /
+    defaults: { _controller: RecupBundle:Default:index }
+
+admin_api_recup:
+    path:     /admin/api/recup_index
+    defaults: { _controller: RecupBundle:Recup:index }
+
+admin_api_recup_trait:
+    path:     /admin/api/recup_trait
+    defaults: { _controller: RecupBundle:Recup:trait }
